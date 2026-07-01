@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz de Argentina</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#78cdff;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+color:#0099ff;
+}
+
+.pregunta{
+margin:20px 0;
+padding:15px;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+.correcta{
+background:#c8f7c5;
+}
+
+.incorrecta{
+background:#ffc9c9;
+}
+
+button{
+width:100%;
+padding:15px;
+font-size:18px;
+background:#0099ff;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+#resultado{
+margin-top:20px;
+font-size:22px;
+text-align:center;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🇦🇷 Quiz de Argentina y el Mundial ⚽</h1>
+<div id="inicio" style="text-align:center; margin-bottom:20px;">
+<h2>👤 Ingresa tu nombre</h2>
+
+<input
+id="nombre"
+type="text"
+placeholder="Escribe tu nombre"
+style="padding:10px;font-size:18px;width:250px;">
+
+<br><br>
+
+<button onclick="comenzar()">
+▶️ Comenzar Quiz
+</button>
+
+<h2 id="tiempo" style="display:none;">
+⏱️ Tiempo: 05:00
+</h2>
+
+</div>
+<form id="quiz" style="display:none;">
+
+<div class="pregunta" data-correcta="0">
+<b>1. ¿Cuál es la capital de Argentina?</b><br>
+<label><input type="radio" name="p1"> Buenos Aires</label><br>
+<label><input type="radio" name="p1"> Córdoba</label><br>
+<label><input type="radio" name="p1"> Rosario</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>2. ¿Qué colores tiene la bandera argentina?</b><br>
+<label><input type="radio" name="p2"> Rojo y blanco</label><br>
+<label><input type="radio" name="p2"> Celeste y blanco</label><br>
+<label><input type="radio" name="p2"> Verde y amarillo</label>
+</div>
+
+<div class="pregunta" data-correcta="2">
+<b>3. ¿Cuál es la moneda de Argentina?</b><br>
+<label><input type="radio" name="p3"> Dólar</label><br>
+<label><input type="radio" name="p3"> Euro</label><br>
+<label><input type="radio" name="p3"> Peso </label>
+</div>
+
+<div class="pregunta" data-correcta="0">
+<b>4. ¿Cuántas provincias tiene Argentina?</b><br>
+<label><input type="radio" name="p4"> 23</label><br>
+<label><input type="radio" name="p4"> 24</label><br>
+<label><input type="radio" name="p4"> 22</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>5. ¿Qué cordillera atraviesa Argentina?</b><br>
+<label><input type="radio" name="p5"> Himalaya</label><br>
+<label><input type="radio" name="p5"> Los Andes</label><br>
+<label><input type="radio" name="p5"> Alpes</label>
+</div>
+<div class="pregunta" data-correcta="2">
+<b>6. ¿Cuál es la montaña más alta de América?</b><br>
+<label><input type="radio" name="p6"> Monte Everest</label><br>
+<label><input type="radio" name="p6"> Cerro Tronador</label><br>
+<label><input type="radio" name="p6"> Aconcagua</label>
+</div>
+
+<div class="pregunta" data-correcta="0">
+<b>7. ¿Cuál es la bebida tradicional de Argentina?</b><br>
+<label><input type="radio" name="p7"> Mate</label><br>
+<label><input type="radio" name="p7"> Café</label><br>
+<label><input type="radio" name="p7"> Té</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>8. ¿Cuántas Copas del Mundo ganó Argentina hasta la actualidad?</b><br>
+<label><input type="radio" name="p8"> 2</label><br>
+<label><input type="radio" name="p8"> 3</label><br>
+<label><input type="radio" name="p8"> 4</label>
+</div>
+
+<div class="pregunta" data-correcta="2">
+<b>9. ¿En qué año Argentina ganó el Mundial de Qatar?</b><br>
+<label><input type="radio" name="p9"> 2018</label><br>
+<label><input type="radio" name="p9"> 2020</label><br>
+<label><input type="radio" name="p9"> 2022</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>10. ¿Quién fue el capitán de Argentina en el Mundial de 2022?</b><br>
+<label><input type="radio" name="p10"> Ángel Di María</label><br>
+<label><input type="radio" name="p10"> Lionel Messi</label><br>
+<label><input type="radio" name="p10"> Emiliano Martínez</label>
+</div>
+<div class="pregunta" data-correcta="2">
+<b>11. ¿Contra qué selección jugó Argentina la final del Mundial 2022?</b><br>
+<label><input type="radio" name="p11"> Brasil</label><br>
+<label><input type="radio" name="p11"> Croacia</label><br>
+<label><input type="radio" name="p11"> Francia</label>
+</div>
+
+<div class="pregunta" data-correcta="0">
+<b>12. ¿Quién fue el director técnico de Argentina en el Mundial 2022?</b><br>
+<label><input type="radio" name="p12"> Lionel Scaloni</label><br>
+<label><input type="radio" name="p12"> Diego Simeone</label><br>
+<label><input type="radio" name="p12"> Marcelo Gallardo</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>13. ¿Qué río forma parte de la frontera entre Argentina y Uruguay?</b><br>
+<label><input type="radio" name="p13"> Río Paraná</label><br>
+<label><input type="radio" name="p13"> Río de la Plata</label><br>
+<label><input type="radio" name="p13"> Río Colorado</label>
+</div>
+
+<div class="pregunta" data-correcta="2">
+<b>14. ¿Qué ave aparece en el Escudo Nacional Argentino?</b><br>
+<label><input type="radio" name="p14"> Cóndor</label><br>
+<label><input type="radio" name="p14"> Águila</label><br>
+<label><input type="radio" name="p14"> Ninguna ave</label>
+</div>
+
+<div class="pregunta" data-correcta="0">
+<b>15. ¿Qué fecha se celebra el Día de la Independencia de Argentina?</b><br>
+<label><input type="radio" name="p15"> 9 de julio</label><br>
+<label><input type="radio" name="p15"> 25 de mayo</label><br>
+<label><input type="radio" name="p15"> 20 de junio</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>16. ¿Cuál es el deporte más popular en Argentina?</b><br>
+<label><input type="radio" name="p16"> Básquet</label><br>
+<label><input type="radio" name="p16"> Fútbol</label><br>
+<label><input type="radio" name="p16"> Rugby</label>
+</div>
+
+<div class="pregunta" data-correcta="2">
+<b>17. ¿Qué selección eliminó Argentina en la semifinal del Mundial 2022?</b><br>
+<label><input type="radio" name="p17"> Países Bajos</label><br>
+<label><input type="radio" name="p17"> Australia</label><br>
+<label><input type="radio" name="p17"> Croacia</label>
+</div>
+
+<div class="pregunta" data-correcta="0">
+<b>18. ¿Cuál es el océano que baña las costas argentinas?</b><br>
+<label><input type="radio" name="p18"> Océano Atlántico</label><br>
+<label><input type="radio" name="p18"> Océano Pacífico</label><br>
+<label><input type="radio" name="p18"> Océano Índico</label>
+</div>
+
+<div class="pregunta" data-correcta="2">
+<b>19. ¿Quién ganó el Balón de Oro del Mundial de Qatar 2022?</b><br>
+<label><input type="radio" name="p19"> Kylian Mbappé</label><br>
+<label><input type="radio" name="p19"> Luka Modrić</label><br>
+<label><input type="radio" name="p19"> Lionel Messi</label>
+</div>
+
+<div class="pregunta" data-correcta="1">
+<b>20. ¿Cómo se llama el himno nacional de Argentina?</b><br>
+<label><input type="radio" name="p20"> Marcha de San Lorenzo</label><br>
+<label><input type="radio" name="p20"> Himno Nacional Argentino</label><br>
+<label><input type="radio" name="p20"> Aurora</label>
+</div>
+<button type="button" onclick="corregir()">Ver resultado</button>
+
+</form>
+
+<div id="resultado"></div>
+
+</div>
+<script>
+let segundos=300,reloj;
+function comenzar(){
+const nombre=document.getElementById('nombre').value.trim();
+if(!nombre){alert('Escribe tu nombre.');return;}
+document.getElementById('quiz').style.display='block';
+document.getElementById('tiempo').style.display='block';
+document.querySelector('#inicio button').style.display='none';
+document.getElementById('nombre').disabled=true;
+reloj=setInterval(function(){
+segundos--;
+const m=Math.floor(segundos/60),s=segundos%60;
+document.getElementById('tiempo').textContent='⏱️ Tiempo: '+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+if(segundos<=0){clearInterval(reloj);alert('⏰ ¡Se terminó el tiempo!');corregir();}
+},1000);
+}
+</script>
+<script>
+function corregir() {
+clearInterval(reloj);
+
+let preguntas = document.querySelectorAll(".pregunta");
+let puntos = 0;
+
+preguntas.forEach(function(pregunta){
+
+let correcta = parseInt(pregunta.dataset.correcta);
+let opciones = pregunta.querySelectorAll("input");
+
+opciones.forEach(function(opcion){
+opcion.parentElement.classList.remove("correcta");
+opcion.parentElement.classList.remove("incorrecta");
+});
+
+let elegida = -1;
+
+opciones.forEach(function(opcion, i){
+if(opcion.checked){
+elegida = i;
+}
+});
+
+opciones[correcta].parentElement.classList.add("correcta");
+
+if(elegida == correcta){
+puntos++;
+}else if(elegida != -1){
+opciones[elegida].parentElement.classList.add("incorrecta");
+}
+
+});
+
+let mensaje = "";
+
+if(puntos == 20){
+mensaje = "🏆 ¡Excelente! ¡Obtuviste el puntaje perfecto!";
+}else if(puntos >= 16){
+mensaje = "🥇 ¡Muy bien! Sabes mucho sobre Argentina.";
+}else if(puntos >= 11){
+mensaje = "👏 Buen trabajo.";
+}else{
+mensaje = "📚 Sigue practicando.";
+}
+
+document.getElementById("resultado").innerHTML =
+"<h2>🇦🇷 Obtuviste " + puntos + " de 20 respuestas correctas.</h2><p>" + mensaje + "</p>";
+
+}
+</script>
+
+</body>
+</html>
